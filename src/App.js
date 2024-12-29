@@ -18,7 +18,7 @@ function App() {
   }
 
   function times(e) {
-    // Add the code for the multiply function
+    // Add the code for the plus function
     e.preventDefault()
     setResult(result => result * Number(inputRef.current.value))
   }
@@ -26,17 +26,18 @@ function App() {
   function divide(e) {
     // Add the code for the divide function
     e.preventDefault()
-    if (inputRef.current.value === 0) {
-      alert('Cannot divide by 0')
-      return
+    let divisor = Number(inputRef.current.value)
+    if (divisor === 0) {
+      alert('You tried dividing by 0! Skipping this ...')
+    } else {
+      setResult(result => result / divisor)
     }
-    setResult(result => result / Number(inputRef.current.value))
   }
 
   function resetInput(e) {
     // Add the code for the resetInput function
     e.preventDefault()
-    inputRef.current.value = ''
+    inputRef.current.value = 0
   }
 
   function resetResult(e) {
@@ -49,9 +50,10 @@ function App() {
     <div className="App">
       <div>
         <h1>Simplest Working Calculator</h1>
+        <h3> {result} </h3>
       </div>
       <form>
-        <p ref={resultRef}>{result}</p>
+        <p ref={resultRef}>{/* add the value of the current total */}</p>
         <input
           pattern="[0-9]"
           ref={inputRef}
@@ -59,10 +61,15 @@ function App() {
           placeholder="Type a number"
         />
         <button onClick={plus}>add</button>
-        <button onClick={minus}>minus</button>
+        {/* Add the subtract button */}
+        <button onClick={minus}>subtract</button>
+        {/* Add the multiply button */}
         <button onClick={times}>multiply</button>
+        {/* Add the divide button */}
         <button onClick={divide}>divide</button>
+        {/* Add the resetInput button */}
         <button onClick={resetInput}>reset input</button>
+        {/* Add the resetResult button */}
         <button onClick={resetResult}>reset result</button>
       </form>
     </div>
